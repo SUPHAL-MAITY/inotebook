@@ -5,7 +5,7 @@ const express = require('express')
 
 connectTomongo();
 const app = express()
-const port = 3000
+const port = 5000
 
 ///to parse the req body
 app.use(express.json())
