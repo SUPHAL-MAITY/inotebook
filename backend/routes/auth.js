@@ -4,12 +4,13 @@ const router=express.Router();
 const { body, validationResult } = require('express-validator');
 const bcrypt = require("bcryptjs");
 var jwt=require("jsonwebtoken");
+var fetchuser=require("../middleware/fetchuser")
 
 
 
 const JWT_SECRET = 'suphalisag@@dboy';
 
-///////applying validation
+//Route:1 >>Create a User using: POST "/api/auth/createuser".///////applying validation
 router.post("/createuser", [
     body("name","Enter a valid name").isLength({min:3}),
     body("email","Enter a valid email").isEmail(),
@@ -95,12 +96,28 @@ router.post("/login",[
     
   }catch(error) {
     console.error(error.message);
-    res.status(500).send("Internal Server Error");
+    res.status(403).send("Internal Server Error");
     
   }
  
 
   
+
+})
+
+// ROUTE 3: Get loggedin User Details using: POST "/api/auth/getuser".
+router.post("/getuser",fetchuser, async(req,res)=>{
+  try {
+    userId=req.user.id 
+    const user=await User.findById(userId).select("-password")
+    res.send(user)
+
+    
+  } catch (error) {
+    console.error(error.message);
+    res.status(404).send("Internal Server Error");
+    
+  }
 
 })
 
