@@ -37,6 +37,8 @@ const Signup = (props) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   return (
+    <div className="mt2">
+      <h2>Create an account to continue </h2>
     <div className="container">
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -98,6 +100,7 @@ const Signup = (props) => {
           Submit
         </button>
       </form>
+    </div>
     </div>
   );
 };

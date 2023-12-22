@@ -35,6 +35,9 @@ const Login = (props) => {
   };
 
   return (
+    <>
+    <div className="mt-2">
+    <h2>Log in to continue to Notebook</h2>
     <div>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -73,6 +76,8 @@ const Login = (props) => {
         </button>
       </form>
     </div>
+    </div>
+    </>
   );
 };
 
